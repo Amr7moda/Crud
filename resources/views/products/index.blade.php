@@ -11,11 +11,35 @@
 </head>
 
 <body>
+
+
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ route('products.create') }}">Create
+                            Product </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('products.index') }}">Show Products</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
     <div class="container m-5 p-4">
         <div class="row m-3 text-center">
             @foreach ($products as $product)
                 <div class="col-3 m-1 shadow border">
-                    <img src="app/public/product/{{ $product->image }}" alt="">
+                    <img src="uploads/{{ $product->image }}" alt="">
                     <h2>{{ $product->name }}</h2>
                     <p>{{ $product->price }}</p>
                     <form action="{{ route('products.destroy', $product->id) }}" method="POST">

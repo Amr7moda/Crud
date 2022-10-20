@@ -15,7 +15,6 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::get();
-        // dd($products);
         return view('products.index', ['products' => $products]);
     }
 
@@ -37,15 +36,13 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'image' => 'mimes:jpeg,bmp,png'
-        ]);
-        
-        $request->file->store('product', 'public');
+        $name = $request->image->getClientOriginalName();
+        $request->image->move('uploads/', $name);
+
         $product = new Product([
             "name" => $request->get('name'),
             "price" => $request->get('price'),
-            "image" => $request->file->hashName()
+            "image" => $name
         ]);
         $product->save();
 
@@ -60,6 +57,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
+        //
     }
 
     /**
@@ -71,7 +69,6 @@ class ProductController extends Controller
     public function edit($id)
     {
         $products = Product::find($id);
-        // dd($products);
         return view('products.show', ['products' => $products]);
     }
 
