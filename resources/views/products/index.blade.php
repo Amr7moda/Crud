@@ -39,7 +39,7 @@
         <div class="row m-3 text-center">
             @foreach ($products as $product)
                 <div class="col-3 m-1 shadow border">
-                    <img src="uploads/{{ $product->image }}" alt="">
+                    <img src="/uploads/{{ $product->image }}" alt="">
                     <h2>{{ $product->name }}</h2>
                     <p>{{ $product->price }}</p>
                     <form action="{{ route('products.destroy', $product->id) }}" method="POST">
