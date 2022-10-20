@@ -100,6 +100,8 @@ class ProductController extends Controller
     {
         $products = Product::find($id);
         $products->delete();
-        return view('products.index');
+        $products = Product::get();
+
+        return view('products.index', ['products' => $products]);
     }
 }
