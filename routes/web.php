@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/products/create', function () {
-    return view('create');
+Route::get('/', function () {
+    return view('welcome');
 });
 
 Route::get('/products', [\App\Http\Controllers\ProductController::class, 'create'])->name('products.create');
@@ -28,3 +29,8 @@ Route::get('/products/{id}', [\App\Http\Controllers\ProductController::class, 'u
 
 
 Route::resource('products', 'App\Http\Controllers\ProductController');
+
+Auth::routes();
+Route::get('/logout', [App\Http\Controllers\HomeController::class, 'logout'])->name('logout');
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
